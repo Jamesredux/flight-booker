@@ -1,0 +1,31 @@
+
+
+<div class="container search">
+	<%= form_tag("/", method: "get") do %>
+		<div class="row airport_pick">
+			<div class="col-md-3 from_airport">
+				From:
+				<%= select_tag(:from_airport, options_for_select(@airports)) %>
+			</div>
+			<div class="col-md-3 to_airport">
+				To:
+				<%= select_tag(:to_airport, options_for_select(@airports)) %>
+			</div>
+		</div>
+		<div class="row flight_detail_pick">
+			<div class="col-md-3 date_pick">
+				Date:
+				<%= select_tag(:chosen_date, options_for_select(@flight_days)) %>
+			</div>
+			<div class="col-md-3 passengers">
+				Number of passengers:
+				<%=  select_tag(:party_size, options_for_select(@passenger_options)) %>
+			</div>
+			<div class="row">
+				<%= submit_tag("Search") %>
+			</div>
+	</div>
+	<% end %>
+</div>
+
+
