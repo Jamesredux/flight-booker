@@ -17,8 +17,8 @@ class Flight < ApplicationRecord
 
 	def self.search(from, destination, date)
 			Flight.where(from_airport_id:  from,
-  									to_airport_id: destination)
-  									#dep_time: Flight.within_date(date))
+  									to_airport_id: destination,
+  									dep_time: Flight.within_date(date))
 	end
 
 

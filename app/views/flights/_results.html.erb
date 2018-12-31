@@ -1,8 +1,23 @@
 
-hello
-<% @flights.each do |flight| %>
-		<div><%=  flight.from_airport.name %>
-				<%= flight.to_airport.name %>
-				<%= flight.dep_time %>
-		</div>		 
-	<% end %>
+<% if @flights %>
+
+	<%= form_tag("/booking/new", method: "get") do %>
+		<%= hidden_field_tag :party_size, @party_size %>
+			<% @flights.each do |flight| %>
+		<ul>
+			<li><%= radio_button_tag :flight_id, flight.id %>
+					<%=  flight.from_airport.name %>
+					<%= flight.to_airport.name %>
+					<%= flight.dep_time.strftime( "%a %d %b  %Y %H:%M") %>
+			</li>		 
+		</ul>	
+		<% end %>
+		<%= submit_tag("Select Flight") %>
+	<% end %>	
+<% end %>	
+
+
+
+
+
+
