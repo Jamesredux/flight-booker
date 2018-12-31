@@ -7,17 +7,6 @@ Flight.delete_all
 
 # Airports
 
-#Airport.create!(name: "Tokyo",
-#								code: "HND")
-
-#Airport.create!(name: "Los Angeles",
-#								code: "LAX")
-
-#Airport.create!(name: "London",
-#								code: "LHR")
-
-#Airport.create!(name: "Bangkok",
-#								code: "BKK")
 
 airports = {"HND" => "Tokyo", 
 							"LAX" => "Los Angeles", 
@@ -31,75 +20,60 @@ end
 #Flights
 
 
+tokyo_flights = 	 { 2 => 600, 3 => 780, 4 => 420 } 
+lax_flights = 		 { 1 => 600, 3 => 600, 4 => 1140 } 
+london_flights = 	 { 1 => 780, 2 => 600, 4 => 660 } 
+bangkok_flights =  { 1 => 420, 2 => 1140, 3 => 660 } 
 
-#create random dates
+airport_schedule = [tokyo_flights, lax_flights, london_flights, bangkok_flights]
 
-dates = []
+#create dates
+
+@dates = []
+day_count = 2
 5.times do 
-	dates << (Faker::Date.forward(25))
+	@dates << Date.today+day_count.days
+	day_count+= 2
 end
 
-def random_datetime(date)
-	date = Faker::Time.between(date.beginning_of_day, date.end_of_day, :all)	
+
+def create_airport_departures(airport_schedule)
+	from_airport = 1
+	airport_schedule.each do |destinations_hash|
+		create_flights(from_airport, destinations_hash)
+		from_airport += 1
+	end
+
+end
+
+
+def create_flights(from_airport, destinations_hash)
+	destinations_hash.each do |desination_code, duration|
+		@dates.each do |date|
+		#goes through each of the dates
+			hour_count = rand(4..8)
+				5.times do 
+			#creates 5 departures per day
+					Flight.create!(from_airport_id: from_airport, 
+											to_airport_id: desination_code, 
+											dep_time: random_datetime(date, hour_count), 
+											duration: duration )
+				hour_count+=3
+			end
+		end
+	end		
+end
+
+def random_datetime(date, hour_count)
+	date = date.to_datetime+hour_count.hours
+
+	#date = Faker::Time.between(date, date).utc
+	#date = date.beginning_of_hour
 	return date
 end
 
 
 
-tokyo_flights = 	{ 2 => 600, 3 => 780, 4 => 420 }
-lax_flights = 		{ 1 => 600, 3 => 600, 4 => 1140 }
-london_flights = 	{ 1 => 780, 2 => 600, 4 => 660 }
-bangkok_flights = { 1 => 420, 2 => 1140, 3 => 660 }
 
-# Tokyo flights.
-
-tokyo_flights.each do |code, duration|
-	dates.each do |date|
-		#goes through each of the dates
-		5.times do 
-			#creates 5 departures per day
-			Flight.create!(from_airport_id: 1, 
-											to_airport_id: code, 
-											dep_time: random_datetime(date), 
-											duration: duration )
-		end
-	end
-end			
-
-# Los Angeles flights
-lax_flights.each do |code, duration|
-	dates.each do |date|
-		5.times do 
-			Flight.create!(from_airport_id: 2, 
-											to_airport_id: code, 
-											dep_time: random_datetime(date), 
-											duration: duration )
-		end
-	end
-end		
-
-#london flights
-
-london_flights.each do |code, duration|
-	dates.each do |date|
-		5.times do 
-			Flight.create!(from_airport_id: 3, 
-											to_airport_id: code, 
-											dep_time: random_datetime(date), 
-											duration: duration )
-		end
-	end
-end			
-
-#bangkok flights
-
-bangkok_flights.each do |code, duration|
-	dates.each do |date|
-		5.times do 
-			Flight.create!(from_airport_id: 4, 
-											to_airport_id: code, 
-											dep_time: random_datetime(date), 
-											duration: duration )
-		end
-	end
-end			
+create_airport_departures(airport_schedule)
+	
