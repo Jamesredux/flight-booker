@@ -1,0 +1,8 @@
+
+hello
+<% @flights.each do |flight| %>
+		<div><%=  flight.from_airport.name %>
+				<%= flight.to_airport.name %>
+				<%= flight.dep_time %>
+		</div>		 
+	<% end %>
