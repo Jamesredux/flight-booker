@@ -1,0 +1,19 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<ul>
+				<li>Flight ID:<%=  @flight.id  %></li>
+				<li>	Departure Time:<%=  @flight.dep_time.strftime( "%a %d %b  %Y %H:%M")  %></li>
+				<li>From: <%=  @flight.from_airport.name  %></li>
+				<li>To: <%=  @flight.to_airport.name  %></li>
+				<li>Number of passengers = <%= @party_size %></li>
+			</ul>		
+		</div>
+		<div class="col-md-6">
+			2nd column
+		</div>
+	</div>
+	<div class="row">
+		this is where the fields to input passengers will be..
+	</div>
+</div>

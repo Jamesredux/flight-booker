@@ -1,7 +1,7 @@
 
 <% if @flights %>
 
-	<%= form_tag("/booking/new", method: "get") do %>
+	<%= form_tag("/bookings/new", method: "get") do %>
 		<%= hidden_field_tag :party_size, @party_size %>
 			<% @flights.each do |flight| %>
 		<ul>
