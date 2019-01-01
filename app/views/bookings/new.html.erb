@@ -1,19 +1,96 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<ul>
-				<li>Flight ID:<%=  @flight.id  %></li>
-				<li>	Departure Time:<%=  @flight.dep_time.strftime( "%a %d %b  %Y %H:%M")  %></li>
-				<li>From: <%=  @flight.from_airport.name  %></li>
-				<li>To: <%=  @flight.to_airport.name  %></li>
-				<li>Number of passengers = <%= @party_size %></li>
-			</ul>		
+
+	<div class="row passenger_details">
+		<div class="col-md-9 col-md-offset-3">
+
+			<div class="row">
+				<h2>Passenger Details</h2>
+
+			<div class="col-md-12 flight_details"></div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Flight Number</th>
+								<th>From</th>
+								<th>Destination</th>
+								<th>Departure Date</th>
+								<th>Departure Time</th>
+								<th>Number of Passengers</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td><%=  @flight.id  %></td>
+								<td><%=  @flight.from_airport.name  %></td>
+								<td><%=  @flight.to_airport.name  %></td>
+								<td><%=  @flight.dep_time.strftime( "%a %d %b  %Y")  %></td>
+								<td><%=  @flight.dep_time.strftime( "%H:%M")  %></td>
+								<td><%= @party_size %></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+			</div>
 		</div>
-		<div class="col-md-6">
-			2nd column
-		</div>
-	</div>
-	<div class="row">
-		this is where the fields to input passengers will be..
-	</div>
-</div>
+			</div>
+		
+<div class="row ">			
+	<%= form_for(@booking) do |f| %>
+		<% if @booking.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@booking.errors.count,"error") %></h2>
+
+				<ul>
+					<% @booking.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>	
+				</ul>
+			</div>
+		<% end %>
+			
+						
+		<%= f.fields_for :passengers do |passenger_form| %>
+			<div class="row">
+				<div class="col-md-12 well passenger_box">
+					<h3>Passenger Details</h3>
+
+					<div class="form_group">
+						<%= passenger_form.label :name %>
+						<div class="col-md-9">
+							<%= passenger_form.text_field :name %>
+						</div>
+					</div>
+
+						<div class="form_group">
+						<%= passenger_form.label :email %>
+						<div class="col-md-9">
+							<%= passenger_form.text_field :email %>
+						</div>
+					</div>
+
+						<div class="form_group">
+						<%= passenger_form.label :passport_no %>
+						<div class="col-md-9">
+							<%= passenger_form.number_field :passport_no %>
+						</div>
+					</div>
+
+
+				</div>
+			</div>	
+
+			<% end %>
+			
+			<%= hidden_field_tag :party_size, @party_size %>
+			<%= f.hidden_field :flight_id, value: params[:flight_id] %>	
+			<%= hidden_field_tag :flight_id, @flight %>
+
+			<%= f.submit "Continue to Book", class: "btn btn-lg " %>
+
+		<% end %>	
+</div>						
+			
+	
+
+
