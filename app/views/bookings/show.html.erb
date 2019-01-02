@@ -1,2 +1,13 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<div class="row ">			
+	<%= form_for(@booking) do |f| %>
+		<% if @booking.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@booking.errors.count,"error") %></h2>
+
+				<ul>
+					<% @booking.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>	
+				</ul>
+			</div>
+		<% end %>

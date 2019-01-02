@@ -37,6 +37,7 @@
 		
 <div class="row ">			
 	<%= form_for(@booking) do |f| %>
+		<%= f.hidden_field :flight_id, value: @flight.id %>
 		<% if @booking.errors.any? %>
 			<div id="error_explanation">
 				<h2><%= pluralize(@booking.errors.count,"error") %></h2>
@@ -51,6 +52,7 @@
 			
 						
 		<%= f.fields_for :passengers do |passenger_form| %>
+				<%= passenger_form.hidden_field :flight_id, value: @flight.id.to_i %>
 			<div class="row">
 				<div class="col-md-12 well passenger_box">
 					<h3>Passenger Details</h3>
@@ -81,10 +83,9 @@
 			</div>	
 
 			<% end %>
-			
 			<%= hidden_field_tag :party_size, @party_size %>
-			<%= f.hidden_field :flight_id, value: params[:flight_id] %>	
-			<%= hidden_field_tag :flight_id, @flight %>
+			<%= f.hidden_field :flight_id, value: @flight.id.to_i %>
+			<%= hidden_field_tag :flight_id, @flight.id.to_i %>
 
 			<%= f.submit "Continue to Book", class: "btn btn-lg " %>
 
