@@ -8,9 +8,11 @@ class BookingsController < ApplicationController
   end
 
   def show
-     @booking = Booking.find(params[:id]) 
-     @flight =  Flight.find(@booking.flight_id)
-     @passengers = list_passengers(@booking)
+     @booking = Booking.find_by_id(params[:id]) 
+     if @booking 
+      @flight =  Flight.find(@booking.flight_id)
+      @passengers = list_passengers(@booking)
+     end 
   end
 
   def create

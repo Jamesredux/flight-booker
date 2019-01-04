@@ -1,6 +1,6 @@
 class Passenger < ApplicationRecord
 	belongs_to :booking
-	#belongs_to :flight
+
 	
 
 	before_save :downcase_email
@@ -12,4 +12,13 @@ class Passenger < ApplicationRecord
 							uniqueness: { case_sensitive: false }
 
 	validates :passport_no, presence:true
+
+
+	private
+
+	def downcase_email
+		self.email.downcase!
+	end
+
+
 end
