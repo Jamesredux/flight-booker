@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def new
-  	@flight = Flight.find(params[:flight_id])
+  	@flight = Flight.find_by_id(params[:flight_id])
   	@party_size = params[:party_size].to_i
   	@booking = Booking.new
   	@party_size.times { @booking.passengers.build }
@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
       flash[:success] = "Booking confirmed"
       redirect_to @booking
     else
-      @flight = Flight.first
+      @flight = Flight.find_by_id(params[:flight_id])
       render 'new'
     end   
   end
@@ -29,6 +29,8 @@ class BookingsController < ApplicationController
   def index
     @booking = Booking.find(params[:id])
   end
+
+
 
   private
 

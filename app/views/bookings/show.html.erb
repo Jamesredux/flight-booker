@@ -1,15 +1,16 @@
 <% if @booking %>
 
 
-Your booking ref is: <%= @booking.id %>
 
 
 
-<div class="row passenger_details">
+<div class="row flight_details">
 		<div class="col-md-9 col-md-offset-3">
 
 			<div class="row">
-				<h2>Passenger Details</h2>
+				<h2>Your booking ref is: <%= @booking.id %></h2>
+
+			
 
 			<div class="col-md-12 flight_details"></div>
 				<div class="panel-body">
@@ -21,6 +22,7 @@ Your booking ref is: <%= @booking.id %>
 								<th>Destination</th>
 								<th>Departure Date</th>
 								<th>Departure Time</th>
+								<th>Duration</th>
 								<th>Number of Passengers</th>
 							</tr>
 						</thead>
@@ -32,6 +34,7 @@ Your booking ref is: <%= @booking.id %>
 								<td><%=  @flight.to_airport.name  %></td>
 								<td><%=  @flight.dep_time.strftime( "%a %d %b  %Y")  %></td>
 								<td><%=  @flight.dep_time.strftime( "%H:%M")  %></td>
+								<td><%= distance_of_time_in_words(@flight.duration.minutes) %></td>
 								<td><%= @booking.passenger_ids.count %></td>
 							</tr>
 						</tbody>
@@ -40,15 +43,35 @@ Your booking ref is: <%= @booking.id %>
 			</div>
 		</div>
 </div>
+<div class="row passenger_details">
+	<h2>Passenger Details</h2>	
 
 
-<% @passengers.each do |passenger|%>
-	<ul>
-		<li><%= passenger.name %></li>
-		<li><%= passenger.email %></li>
-		<li><%= passenger.passport_no %></li>
-	</ul>
-<% end %>	 
+<div class="col-md-12 passenger_details"></div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Passport Number</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<% @passengers.each do |passenger|%>
+								<tr>
+									<td><%=  passenger.name %></td>
+									<td><%=  passenger.email  %></td>
+									<td><%=  passenger.passport_no  %></td>
+								</tr>
+							<% end %>	
+						</tbody>
+					</table>
+				</div>	
+			</div>
+
+
 
 
 <% else %>
