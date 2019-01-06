@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  
   def new
   	@flight = Flight.find_by_id(params[:flight_id])
   	@party_size = params[:party_size].to_i

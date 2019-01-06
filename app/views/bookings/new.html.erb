@@ -54,7 +54,7 @@
 	
 		<% end %>
 			
-						
+		<h3>Passenger Details</h3>				
 		
 		<%= f.fields_for :passengers do |passenger_form| %>
 
@@ -63,18 +63,18 @@
 			<div class="row passenger-input">
 				<div class="col-md-12 well passenger_box">
 		
-					<h3>Passenger Details</h3>
+					
 
 					<div class="form_group">
 					
-						<%= passenger_form.label :name %>
+						<%= passenger_form.label :name, "Name:" %>
 						<%= passenger_form.text_field :name %>
 					
 					</div>
 
 					<div class="form_group">
 						
-						<%= passenger_form.label :email %>
+						<%= passenger_form.label :email, "Email:" %>
 						<%= passenger_form.text_field :email %>
 					
 					</div>

@@ -1,3 +1,7 @@
+To do 
+sort out routes when new bookings fails validation it goes to booking index and 
+loses params
+
 App created as part of the odin project
 
 https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-advanced-forms

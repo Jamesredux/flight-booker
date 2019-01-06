@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	root 'flights#index'
   get 'flights/index'
   get 'bookings/search'
+  get '/about', to: 'flights#about'
 
   #resources :passengers
   resources :bookings
