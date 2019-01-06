@@ -1,1 +1,111 @@
+/* navbar  */
 
+
+#flight-nav {
+	height: 100px;
+	background-color: #90CCE8;
+	margin-bottom: 30px;
+}
+
+#logo.logo {
+	font-size: 3em;
+	font-weight: bold;
+}
+
+#flight-nav  a {
+	font-size: 1.5em;
+	padding: 3px;
+	color: #ffffff;
+	&:hover {
+		color: #EEF1EA;
+	}
+}
+
+/* search box */
+
+
+.search, .flight-results {
+	
+	box-shadow: 0px 0px 2px 2px gray;
+	padding: 10px;
+}
+
+
+select {
+	padding: 5px;
+	padding-right: 20px;
+	background-color: #E4F6FF;
+	border: 0px solid;
+	box-shadow: 0px 0px 0.5px 0.5px gray;
+}
+
+.submit-button {
+	padding: 5px;
+	padding-right: 20px;
+	background-color: #E4F6FF;
+	border: 0px solid;
+	box-shadow: 0px 0px 0.5px 0.5px gray;
+	padding-left: 15px;
+	
+}
+
+/* results */
+
+
+.flight-results {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+
+/* footer  */
+
+
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  
+  background-color: #4e5d6c;
+}
+
+
+.github-link {
+	margin-left: 50px;
+}
+
+.footer-info {
+	padding-top: 10px;
+	
+	font-size: 1.5em;
+	color: #ffffff;
+	
+}
+
+/* booking */
+
+
+#error-explanation {
+	color: red;
+	ul {
+		color: red;
+		margin: 0 0 30px 0;
+	}
+}
+
+.flight-details{
+	box-shadow: 0px 0px 0.5px 0.5px gray;
+	padding: 10px;
+
+}
+
+
+.passenger-details {
+	margin-left: 15px;
+	box-shadow: 0px 0px 0.5px 0.5px gray;
+	padding: 10px;
+
+}

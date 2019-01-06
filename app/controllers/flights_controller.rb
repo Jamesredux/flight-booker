@@ -7,9 +7,9 @@ class FlightsController < ApplicationController
   	@flights = Flight.search(params[:from_airport], params[:to_airport], params[:chosen_date])
   	@party_size = params[:party_size]
   
-  	if params[:commit] == "Search"
+  	if params[:commit] == "Search Flights"
   		if params[:from_airport] == params[:to_airport]
-  			flash[:danger] ="Origin and  Destination Airports can not be the same."
+  			flash.now[:danger] ="Origin and  Destination Airports can not be the same."
   		end
   	end		
 
