@@ -1,11 +1,11 @@
-<header class="navbar navbar-nav navbar-expand-lg navbar-dark bg-dark">
+<header class="navbar navbar-nav navbar-expand-lg" id="flight-nav">
   		<div class="container">
-  			<%= link_to "Flight Booker", root_path, id: "logo" %>
+  			<%= link_to "Flight Booker", root_path, class: "logo", id: "logo" %>
   			<nav>
   				<ul class="nav navbar-nav navbar-right ">
   					<li><%= link_to "Home", root_path %></li>
-  					<li><%= link_to "Manage Booking", '#' %></li>
-            <li><%= link_to "About", '#' %></li>
+  					<li><%= link_to "Manage Booking", bookings_search_path %></li>
+            <li><%= link_to "About", about_path %></li>
   				</ul> 					
   			</nav>
   		</div>

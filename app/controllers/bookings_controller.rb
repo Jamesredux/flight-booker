@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
+  
   def new
-  	@flight = Flight.find(params[:flight_id])
+  	@flight = Flight.find_by_id(params[:flight_id])
   	@party_size = params[:party_size].to_i
   	@booking = Booking.new
   	@party_size.times { @booking.passengers.build }
@@ -8,9 +9,11 @@ class BookingsController < ApplicationController
   end
 
   def show
-     @booking = Booking.find(params[:id]) 
-     @flight =  Flight.find(@booking.flight_id)
-     @passengers = list_passengers(@booking)
+     @booking = Booking.find_by_id(params[:id]) 
+     if @booking 
+      @flight =  Flight.find(@booking.flight_id)
+      @passengers = list_passengers(@booking)
+     end 
   end
 
   def create
@@ -19,18 +22,20 @@ class BookingsController < ApplicationController
       flash[:success] = "Booking confirmed"
       redirect_to @booking
     else
-      @flight = Flight.first
+      @flight = Flight.find_by_id(params[:flight_id])
       render 'new'
     end   
   end
 
  
 
+
+
   private
 
   def booking_params
     params.require(:booking).permit(:flight_id, 
-                      passengers_attributes: [:name, :email, :passport_no])
+                      passengers_attributes: [:name, :email])
   end
 
 

@@ -1,11 +1,9 @@
-
-	<div class="row passenger_details">
+<div class="container">
+	<div class="row flight-details">
 		<div class="col-md-9 col-md-offset-3">
 
-			<div class="row">
-				<h2>Passenger Details</h2>
+				<h2>Selected Flight</h2>
 
-			<div class="col-md-12 flight_details"></div>
 				<div class="panel-body">
 					<table class="table">
 						<thead>
@@ -15,6 +13,7 @@
 								<th>Destination</th>
 								<th>Departure Date</th>
 								<th>Departure Time</th>
+								<th>Duration</th>
 								<th>Number of Passengers</th>
 							</tr>
 						</thead>
@@ -26,6 +25,7 @@
 								<td><%=  @flight.to_airport.name  %></td>
 								<td><%=  @flight.dep_time.strftime( "%a %d %b  %Y")  %></td>
 								<td><%=  @flight.dep_time.strftime( "%H:%M")  %></td>
+								<td><%= distance_of_time_in_words(@flight.duration.minutes) %></td>
 								<td><%= @party_size %></td>
 							</tr>
 						</tbody>
@@ -33,13 +33,15 @@
 				</div>	
 			</div>
 		</div>
-			</div>
 		
-<div class="row ">			
+<div class="row passenger-details">			
+	
 	<%= form_for(@booking) do |f| %>
+	
 		<%= f.hidden_field :flight_id, value: @flight.id %>
+	
 		<% if @booking.errors.any? %>
-			<div id="error_explanation">
+			<div id="error-explanation">
 				<h2><%= pluralize(@booking.errors.count,"error") %></h2>
 
 				<ul>
@@ -47,35 +49,34 @@
 						<li><%= msg %></li>
 					<% end %>	
 				</ul>
+	
 			</div>
+	
 		<% end %>
 			
-						
+		<h3>Passenger Details</h3>				
+		
 		<%= f.fields_for :passengers do |passenger_form| %>
+
 				<%= passenger_form.hidden_field :flight_id, value: @flight.id.to_i %>
-			<div class="row">
+		
+			<div class="row passenger-input">
 				<div class="col-md-12 well passenger_box">
-					<h3>Passenger Details</h3>
+		
+					
 
 					<div class="form_group">
-						<%= passenger_form.label :name %>
-						<div class="col-md-9">
-							<%= passenger_form.text_field :name %>
-						</div>
+					
+						<%= passenger_form.label :name, "Name:" %>
+						<%= passenger_form.text_field :name %>
+					
 					</div>
 
-						<div class="form_group">
-						<%= passenger_form.label :email %>
-						<div class="col-md-9">
-							<%= passenger_form.text_field :email %>
-						</div>
-					</div>
-
-						<div class="form_group">
-						<%= passenger_form.label :passport_no %>
-						<div class="col-md-9">
-							<%= passenger_form.number_field :passport_no %>
-						</div>
+					<div class="form_group">
+						
+						<%= passenger_form.label :email, "Email:" %>
+						<%= passenger_form.text_field :email %>
+					
 					</div>
 
 
@@ -95,3 +96,4 @@
 	
 
 
+</div>

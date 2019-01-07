@@ -1,21 +1,54 @@
 
-<% if @flights %>
+<% if @flights.size > 0 %>
 
-	<%= form_tag("/bookings/new", method: "get") do %>
+<div container-fluid>
+	<div class="flight-results">
+		
+		<%= form_tag("/bookings/new", method: "get") do %>
+		
 		<%= hidden_field_tag :party_size, @party_size %>
-			<% @flights.each do |flight| %>
-		<ul>
-			<li><%= radio_button_tag :flight_id, flight.id %>
-					<%=  flight.from_airport.name %>
-					<%= flight.to_airport.name %>
-					<%= flight.dep_time.strftime( "%a %d %b  %Y %H:%M") %>
-			</li>		 
-		</ul>	
-		<% end %>
-		<%= submit_tag("Select Flight") %>
+		
+		<h2>Please select flight for <%= pluralize(@party_size,"passenger") %></h2>
+		
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Flight No:</th>
+						<th>From</th>
+						<th>Destination</th>
+						<th>Date</th>
+						<th>Departure Time</th>
+						<th>Duration</th>
+						<th>Select Flight</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @flights.each do |flight| %>
+					<tr>
+						<td><%= flight.id %></td>
+						<td><%= flight.from_airport.name %></td>
+						<td><%= flight.to_airport.name %></td>
+						<td><%= flight.dep_time.strftime( "%a %d %b  %Y")%></td>
+						<td><%= flight.dep_time.strftime( "%H:%M")%></td>
+						<td><%= distance_of_time_in_words(flight.duration.minutes) %></td>
+						<td><%= radio_button_tag :flight_id, flight.id %></td>
+					</tr>
+					<% end %>
+				</tbody>
+		
+		</table>
+			
+			<div class="btn btn-lg">
+				
+				<%= submit_tag("Select Flight", :class=>"submit-button") %>
+	
+			</div>
+
 	<% end %>	
 <% end %>	
-
+</div>
+</div>
 
 
 
