@@ -2,9 +2,14 @@ class BookingsController < ApplicationController
   
   def new
   	@flight = Flight.find_by_id(params[:flight_id])
-  	@party_size = params[:party_size].to_i
-  	@booking = Booking.new
-  	@party_size.times { @booking.passengers.build }
+    if @flight 
+    	@party_size = params[:party_size].to_i
+    	@booking = Booking.new
+    	@party_size.times { @booking.passengers.build }
+    else
+      flash[:danger] = "Select A Flight"
+      redirect_back fallback_location: root_path
+    end    
  
   end
 
@@ -25,6 +30,10 @@ class BookingsController < ApplicationController
       @flight = Flight.find_by_id(params[:flight_id])
       render 'new'
     end   
+  end
+
+  def search
+    @booking =  Booking.new
   end
 
  
