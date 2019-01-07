@@ -24,9 +24,7 @@ class BookingsController < ApplicationController
     end   
   end
 
-  def index
-    @booking = Booking.find(params[:id])
-  end
+ 
 
   private
 

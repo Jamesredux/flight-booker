@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  get 'bookings/new'
+ 
 
-  get 'bookings/show'
+  
 
 	root 'flights#index'
-
-	
   get 'flights/index'
-  #resources :passengers
-  resources :bookings
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  resources :bookings, only: [:new, :create, :show, :destroy] 
+  
 end
