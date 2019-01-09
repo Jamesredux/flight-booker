@@ -67,8 +67,6 @@ end
 def random_datetime(date, hour_count)
 	date = date.to_datetime+hour_count.hours
 
-	#date = Faker::Time.between(date, date).utc
-	#date = date.beginning_of_hour
 	return date
 end
 
