@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
     end  
     return passenger_array
   end
-#   to be added to booking params 
+
 end
 
 
