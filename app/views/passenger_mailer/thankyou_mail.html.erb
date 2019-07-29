@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thankyou for booking your flight, <%= @booker.name %></h1>
+    <p>
+      Your flight has been successfully booked to view or amend please check
+      our booking page. <%= link_to "Manage Booking", @url %><br>
+    </p>
+    <p>
+      Your booking ref is <%= @booking_ref %>   </p>
+    <p>Thanks for using our site, we hope you have a great flight!</p>
+  </body>
+</html>
