@@ -8,7 +8,7 @@
     <h1>Thankyou for booking your flight.</h1>
     <h2>Dear  <%= @booker.name %></h2>
     <p>
-      Your flight has been successfully booked, to view or amend any details please go to <%= link_to "Manage Booking", @url %><br>
+      Your flight has been successfully booked, to view or amend any details please go to <%= link_to "Manage Booking", bookings_search_url %><br>
     </p>
     <p>
       Your booking ref is <%= @booking_ref %>   </p>

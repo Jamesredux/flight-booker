@@ -7,7 +7,9 @@ class PassengerMailer < ApplicationMailer
 		@booker = Passenger.find(@passengers.first)
 		@booking_ref = @booking.id
 		
-		@url = "http://localhost:3000/bookings/search"
+		@url = :bookings_search
+		#"http://localhost:3000/bookings/search"
+		#"https://redux-flights.herokuapp.com/bookings/search"
 		mail(to: @booker.email, Subject: 'Thank you, your Flight has been booked!')
 	end
 end
