@@ -1,8 +1,10 @@
 
-Thankyou for booking your flight, <%= @booker.name %>
-========================================================
+Thankyou for booking your flight.
+=================================
+Dear  <%= @booker.name %>
 
-Your flight has been successfully booked to view or amend please check our booking page. <%= @url %>
+Your flight has been successfully booked, to view or amend any details please go to <%= link_to "Manage Booking", @url %>
     
-Your booking ref is <%= @booking_ref %>   
+    
+Your booking ref is <%= @booking_ref %> 
 Thanks for using our site, we hope you have a great flight!
