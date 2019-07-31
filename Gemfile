@@ -25,7 +25,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'faker',    '~> 1.7.3'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', ">= 4.1.3"
 gem 'jquery-rails', '4.3.1'
 gem 'will_paginate', '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
